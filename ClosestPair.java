@@ -1,3 +1,12 @@
+/**
+ * <h1>Team Programming Project One</h1
+ * CPS 542
+ * @author kelle1ds
+ * @version 1.0
+ * @since 2022-1-26
+ *
+ */
+
 package edu.cmich.cps542;
 
 import java.util.ArrayList;
