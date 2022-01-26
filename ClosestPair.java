@@ -11,8 +11,9 @@
 
 import java.util.ArrayList;
 import java.io.*;
-import java.util.List;
-import java.util.Random;
+//import java.util.List;
+import java.util.ListIterator;
+//import java.util.Random;
 import java.util.Scanner;
 //import java.util.stream.Collectors;
 
@@ -21,7 +22,6 @@ public class ClosestPair {
 	public static void main(String[] args) throws IOException {
 	
 		/* load data from points.txt here */
-		//float [] array = new float [700000];
 		File file = new File("points.txt");
 
 		FileReader inputFil = new FileReader(file);
@@ -35,40 +35,35 @@ public class ClosestPair {
 			String token1 = scanner.next();
 			String replaced = token1.replaceAll("[()]", "");
 			String replaced2 = replaced.replaceAll("[,]", "");
-			//String replaced3 = replaced2.replaceAll("[\n]", " ");
 			String replaced4 = replaced2.replaceAll("\\r\\n|\\r|\\n", " ");
 			float num1 = Float.parseFloat(replaced4);
-			float num2 = 0.0f;
+			//float num2 = 0.0f;
 			
+			String token2 = scanner.next();
+			String replace1 = token2.replaceAll("[()]", "");
+			String replace2 = replace1.replaceAll("[,]", "");
+			String replace3 = replace2.replaceAll("\\r\\n|\\r|\\n", " ");
+			float num2 = Float.parseFloat(replace3);
 			
-			while(scanner.hasNext()) {
-				String token2 = scanner.next();
-				String replace = token1.replaceAll("[()]", "");
-				String replace2 = replaced.replaceAll("[,]", "");
-				//String replace3 = replaced2.replaceAll("[\n]", " ");
-				String replace3 = replaced2.replaceAll("\\r\\n|\\r|\\n", " ");
-				num2 = Float.parseFloat(replace3);
-			}
 			Point point = new Point(num1,num2);
-			
 			array.add(point);
 			
-			//float num = Float.parseFloat(replaced4);
-		    //array[i] = num;
-			System.out.println(num1 + num2);
-		    i++;
+		    i++;  //count number of points
 		}
 		
 		scanner.close();
 		
-		//printArray(array);
+		//System.out.println(array);
+		
+		printArray(array);
+
 
 		    //out.writeFloat(floatarray[i]);
             
 
 		/* use your sort method here */
 		
-		MergeSort mergeSort = new MergeSort();
+		//MergeSort mergeSort = new MergeSort();
 		//mergeSort.sort(array, 0, array.length-1);
 		
 		//printArray(array);
@@ -78,11 +73,14 @@ public class ClosestPair {
 	}
 	
 	/* A utility function to print array of size n */
-	static void printArray(float arr[])
+	static void printArray(ArrayList<Point> arr)
 	{
-		int n = arr.length;
-		for (int i = 0; i < n; i++)
-			System.out.println(arr[i]);
+		ListIterator<Point> iterator = arr.listIterator(2);  
+		while(iterator.hasNext()) {
+			Point point = iterator.next();
+			System.out.println(point);
+		}
+		
 		System.out.println();
 	}
 
@@ -120,7 +118,7 @@ class MergeSort
 	// Merges two subarrays of arr[].
 	// First subarray is arr[l..m]
 	// Second subarray is arr[m+1..r]
-	void merge(float arr[], int l, int m, int r)
+	void merge(ArrayList<Point> arr, int l, int m, int r)
 	{
 		// Find sizes of two subarrays to be merged
 		int n1 = m - l + 1;
