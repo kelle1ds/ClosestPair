@@ -7,7 +7,7 @@
  *
  */
 
-package edu.cmich.cps542;
+//package edu.cmich.cps542;
 
 import java.util.ArrayList;
 import java.io.*;
@@ -21,28 +21,47 @@ public class ClosestPair {
 	public static void main(String[] args) throws IOException {
 	
 		/* load data from points.txt here */
-		float [] array = new float [700000];
+		//float [] array = new float [700000];
 		File file = new File("points.txt");
 
 		FileReader inputFil = new FileReader(file);
 		Scanner scanner = new Scanner(inputFil);
 		
+		ArrayList<Point> array = new ArrayList<Point>();
+		
 		int i = 0;
 		while(scanner.hasNext()) {
 			
-			String token = scanner.next();
-			String replaced = token.replaceAll("[()]", "");
+			String token1 = scanner.next();
+			String replaced = token1.replaceAll("[()]", "");
 			String replaced2 = replaced.replaceAll("[,]", "");
-			String replaced3 = replaced2.replaceAll("[\n]", " ");
-			String replaced4 = replaced3.replaceAll("\\r\\n|\\r|\\n", " ");
-			float num = Float.parseFloat(replaced4);
-		    array[i] = num;
+			//String replaced3 = replaced2.replaceAll("[\n]", " ");
+			String replaced4 = replaced2.replaceAll("\\r\\n|\\r|\\n", " ");
+			float num1 = Float.parseFloat(replaced4);
+			float num2 = 0.0f;
+			
+			
+			while(scanner.hasNext()) {
+				String token2 = scanner.next();
+				String replace = token1.replaceAll("[()]", "");
+				String replace2 = replaced.replaceAll("[,]", "");
+				//String replace3 = replaced2.replaceAll("[\n]", " ");
+				String replace3 = replaced2.replaceAll("\\r\\n|\\r|\\n", " ");
+				num2 = Float.parseFloat(replace3);
+			}
+			Point point = new Point(num1,num2);
+			
+			array.add(point);
+			
+			//float num = Float.parseFloat(replaced4);
+		    //array[i] = num;
+			System.out.println(num1 + num2);
 		    i++;
 		}
 		
 		scanner.close();
 		
-		printArray(array);
+		//printArray(array);
 
 		    //out.writeFloat(floatarray[i]);
             
@@ -50,9 +69,9 @@ public class ClosestPair {
 		/* use your sort method here */
 		
 		MergeSort mergeSort = new MergeSort();
-		mergeSort.sort(array, 0, array.length-1);
+		//mergeSort.sort(array, 0, array.length-1);
 		
-		printArray(array);
+		//printArray(array);
 		
 		/* call efficientClosestPair here */
 		
